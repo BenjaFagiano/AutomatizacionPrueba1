@@ -16,20 +16,20 @@ def Navegar(Url):
     return Url
 
 #Datos usuario
-user1 = "ptolaba@hmmglobal.com"
-passWD1 = "123456"
-company1 = "Omint"
-nroSolicitud = "9168"
+user1 = 
+passWD1 = 
+company1 = 
+nroSolicitud = 
 
 #Datos iniciales
-usuario = "//input[@id='username']"
-password = "//input[@id='password']"
-company = "//input[@id='']"
-ingresar = "//span[contains(text(),'Ingresar')]"
-numeroSolicitud = "//input[@id='input-appointmentId']"
-numeroSolicitudLista = "//*[@id='root']/div/div[2]/div[2]/div/div[1]/div/div[2]/div/div[1]/div[3]/div[1]/div/div[2]"
-estadoSolicitudLista = "//*[@id='root']/div/div[2]/div[2]/div/div[1]/div/div[2]/div/div[1]/div[3]/div[1]/div/div[10]"
-botonBuscar = "//span[contains(text(),'BUSCAR')]"
+usuario = 
+password = 
+company = 
+ingresar = 
+numeroSolicitud = 
+numeroSolicitudLista = 
+estadoSolicitudLista = 
+botonBuscar = 
 
 
 def clear_and_write(texto):
@@ -44,7 +44,7 @@ def clear_and_write(texto):
         print("Ocurrio un error al elegir la compañia" + e)
 
 def test_login():
-    Navegar("https://testeo.hmmglobal.com/",)
+    Navegar()
     user = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, usuario)))
     user.click()
     user.send_keys(user1)
