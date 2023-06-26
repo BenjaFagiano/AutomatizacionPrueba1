@@ -1,0 +1,35 @@
+#Se abre la página y establecemos la función "Borrar y escribir"
+
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
+class global_function:
+    def __int__(self, driver):
+        self.driver = driver
+
+
+    def Navegar(self, Url):
+        self.driver = webdriver.Chrome()
+        self.driver.get(Url)
+        self.driver.maximize_window()
+        self.driver.implicitly_wait(15)
+        print("Página abierta: ", Url)
+        return Url
+
+    def clear_and_write(self, company): #agregar assert equal o not equal luego de elegir compañía, da error
+        try:
+            selectCompany = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, "")))
+            selectCompany.clear()
+            selectCompany.send_keys(Keys.BACKSPACE * 15)
+            time.sleep(2)
+            selectCompany.send_keys(Keys.BACKSPACE * 15)
+            selectCompany.send_keys(company)
+            selectCompany.send_keys(Keys.ARROW_DOWN + Keys.ENTER)
+            print("Se eligió una compañia")
+        except Exception as e:
+            print("Ocurrio un error al elegir la compañia" + e)
+            #self.assertEquals(company1.text, "")
