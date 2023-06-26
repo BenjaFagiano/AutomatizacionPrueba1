@@ -1,83 +1,41 @@
 import time
+import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
+from Base.Data import global_function as gf
+from Base.Login import Login_function as lf
 
 
-
-driver = webdriver.Chrome()
-def Navegar(Url):
-    driver.get(Url)
-    driver.maximize_window()
-    driver.implicitly_wait(15)
-    print("Página abierta: ", Url)
-    return Url
-
-#Datos usuario
-user1 = 
-passWD1 = 
-company1 = 
-nroSolicitud = 
-
-#Datos iniciales
-usuario = 
-password = 
-company = 
-ingresar = 
-numeroSolicitud = 
-numeroSolicitudLista = 
-estadoSolicitudLista = 
-botonBuscar = 
+# Datos usuario
+user = ""
+passWD = ""
+company = ""
+nroSolicitud = ""
 
 
-def clear_and_write(texto):
-    try:
-        selectCompany = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, company)))
-        selectCompany.clear()
-        selectCompany.send_keys(Keys.BACKSPACE * 15)
-        time.sleep(2)
-        selectCompany.send_keys(Keys.BACKSPACE * 15)
-        selectCompany.send_keys(texto)
-        selectCompany.send_keys(Keys.ARROW_DOWN + Keys.ENTER)
-        print("Se eligió una compañia")
-    except Exception as e:
-        print("Ocurrio un error al elegir la compañia" + e)
-
-def test_login():
-    Navegar()
-    user = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, usuario)))
-    user.click()
-    user.send_keys(user1)
-    clear_and_write(company1)
-    passWD = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, password)))
-    passWD.click()
-    passWD.send_keys(passWD1)
-    boton1 = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, ingresar)))
-    boton1.click()
-
-
-def test_solicitud():
-    test_login()
-    try:
-        buscar = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, numeroSolicitud)))
-        buscar.click()
-        buscar.send_keys(nroSolicitud)
-        WebDriverWait(driver, 10)
-        boton2 = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, botonBuscar)))
-        boton2.click()
-        print("Se busca una solicitud")
-        estadosolicitud = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, estadoSolicitudLista))).text
-        nslista = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, numeroSolicitudLista))).text
-        if nslista == nroSolicitud:
-            assertEqual()
-            print("Estado de la solicitud " + nroSolicitud + ": " + estadosolicitud)
-        else:
-            print("El número de solicitud no coincide")
-    except Exception as e:
-            print("Ocurrio un error al buscar solicitud"+ e)
-    time.sleep(10)
+class test_solicitudes(unittest.TestCase):
+    def test_solicitud(self):
+        lf.login(self, "", user, passWD, company)
+        try:
+            buscar = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, "")))
+            buscar.click()
+            buscar.send_keys(nroSolicitud)
+            WebDriverWait(self.driver, 10)
+            boton2 = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, "")))
+            boton2.click()
+            print("Se busca una solicitud")
+            estadosolicitud = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, ""))).text
+            nslista = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, ""))).text
+            if nslista == nroSolicitud:
+                print("Estado de la solicitud " + nroSolicitud + ": " + estadosolicitud)
+            else:
+                print("El número de solicitud no coincide")
+        except Exception as e:
+            print("Ocurrio un error al buscar solicitud" + e)
+        time.sleep(10)
 
 
 
