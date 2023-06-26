@@ -1,5 +1,0 @@
-#Aca agregamos los xpath
-
-class PageIndex:
-    def __int__(self, driver):
-        self.driver = driver
